@@ -10,7 +10,7 @@
             v-for="(item, index) in input_type_list"
             :key="index"
             :label="item.input_type_name"
-            :value="item.input_type_id"/>
+            :value="index"/>
         </el-select>
       </el-form-item>
       <el-form-item label="字段名称" prop="field_name">
@@ -22,7 +22,7 @@
             v-for="(item, index) in data_type_list"
             :key="index"
             :label="item.data_type_name+' ('+item.data_type_value+')'"
-            :value="item.data_type_id"/>
+            :value="index"/>
         </el-select>
       </el-form-item>
       <el-form-item label="数据长度" prop="data_len">
@@ -165,6 +165,8 @@ export default {
     },
     doSubmit() {
       var that=this
+      console.log(that.form)
+      return;
       this.$refs['addform'].validate((valid) => {
         if (valid) {
           if (this.isAdd) {
@@ -270,13 +272,24 @@ export default {
         that.lay_verify_list=res.data.lay_verify_list
         if(res.data.input_info) {
           var data = res.data.input_info;
+          let inputType,dataType;
+          that.input_type_list.forEach((item,index)=>{
+            if(item.input_type_id==data.input_type){
+              inputType=index
+            }
+          })
+          that.data_type_list.forEach((item,index)=>{
+            if(item.data_type_id==data.data_type){
+              dataType=index
+            }
+          })
           that.form = {
             type_id: data.type_id,
             input_id:data.input_id,
             input_name: data.input_name,
-            input_type: data.input_type,
+            input_type: inputType,
             field_name: data.field_name,
-            data_type: data.data_type,
+            data_type: dataType,
             data_len: data.data_len,
             decimal_point: data.decimal_point,
             input_default: data.input_default,
