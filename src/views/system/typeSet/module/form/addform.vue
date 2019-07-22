@@ -165,8 +165,6 @@ export default {
     },
     doSubmit() {
       var that=this
-      console.log(that.form)
-      return;
       this.$refs['addform'].validate((valid) => {
         if (valid) {
           if (this.isAdd) {
@@ -226,6 +224,9 @@ export default {
           data[''+key+'']=form[key]
         }
       }
+      data.type_id=that.sup_this.formsetupid
+      data.data_type=that.data_type_list[that.form.data_type].data_type_id
+      data.input_type=that.input_type_list[that.form.input_type].input_type_id
       //连表属性
       if(that.radioTables=='1'){
         data.connect=that.radioTables
