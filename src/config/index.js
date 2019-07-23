@@ -25,13 +25,13 @@ export default {
   /**
    * @description 默认请求域名
    */
-  ajaxRequest:'http://enjoy.heifeng.xin',
+  ajaxRequest:'http://newfoshang.heifeng.xin',
   /**
    * @description 默认图片域名
    */
-  imgUrl:'http://enjoy.heifeng.xin',
+  imgUrl:'http://newfoshang.heifeng.xin',
   /**
    * @description 默认上传文件
    */
-  UploadFile:'http://enjoy.heifeng.xin/index.php/manage/File/upload_big_file',//上传文件接口
+  UploadFile:'http://newfoshang.heifeng.xin/index.php/manage/File/upload_big_file',//上传文件接口
 }

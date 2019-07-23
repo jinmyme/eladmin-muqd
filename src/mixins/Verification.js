@@ -9,10 +9,18 @@ export default {
         callback();
       }
     }
+    let checkPhone = (rule, value, callback) =>{
+      var rulePhone = /^1(3|4|5|7|8)\d{9}$/
+      if (isNaN(value) || !(rulePhone.test(value))) {
+        callback(new Error('必须为手机号'));
+      } else {
+        callback();
+      }
+    }
     return {
       enptyVerify: {
         'required':{required: true, message: '不能为空', trigger: ['blur', 'change']},
-        'phone':{type: 'phone', message: '必须为数字值', trigger: ['blur', 'change']},
+        'phone':{validator: checkPhone, trigger: ['blur', 'change']},
         'email':{type: 'email', message: '必须为邮箱', trigger: ['blur', 'change']},
         'url':{type: 'url', message: '必须为链接', trigger: ['blur', 'change']},
         'number':{validator:checkNumber, trigger: ['blur', 'change']},
