@@ -298,16 +298,17 @@ export default {
             input_verify: data.input_verify,
             aux_text: data.aux_text,
           }
-          if(data.connect) {
-            that.connectDbList=(res.data.connect_db_list).map(item=>({
-              value: item.type_id,
-              label: item.type_name,
-              field: []
-            }))
-            that.radioTables = String(data.connect)
-            that.FieldListValue = [data.connect_type_id, data.conect_input_id, data.conect_need_input_id]
-            that.connectFieldList([data.connect_type_id])
-          }
+        }
+        if(res.data.connect_db_list){
+          var data = res.data.input_info;
+          that.connectDbList=(res.data.connect_db_list).map(item=>({
+            value: item.type_id,
+            label: item.type_name,
+            field: []
+          }))
+          that.radioTables = String(data.connect)
+          that.FieldListValue = [data.connect_type_id, data.conect_input_id, data.conect_need_input_id]
+          if(data.connect_type_id) that.connectFieldList([data.connect_type_id])
         }
       }).catch(err => {
         console.log(err.response.data.message)
